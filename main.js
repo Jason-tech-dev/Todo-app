@@ -39,9 +39,19 @@ const todoCount = document.getElementById("todoCount");
  }
 
  function deleteAllTasks() {
-  var completedItems = 
+  todo = [];
+  saveToLocalStorage();
+  displayTasks();
+
 
  }
+ function toggleTask(index) {
+  todo[index].disabled = !todo[index].disabled;
+  saveToLocalStorage();
+  displayTasks();
+
+ }
+
 
  function displayTasks() {
   todoList.innerHTML = "";
@@ -62,7 +72,9 @@ const todoCount = document.getElementById("todoCount");
   });
   todoList.appendChild(e);
  });
+ todoCount.textContent = todo.length;
  }
+
  function saveToLocalStorage () {
    localStorage.setItem("todo", JSON.stringify(todo));
  }
