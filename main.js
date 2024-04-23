@@ -51,6 +51,26 @@ const todoCount = document.getElementById("todoCount");
   displayTasks();
 
  }
+ function editTask(index) {
+  const todoItem = document.getElementById(`todo-${index}`);
+  const existingText = todo[index].text;
+  const inputElement = document.createElement("input");
+
+  inputElement.value = existingText;
+  todoItem.replaceWith(inputElement);
+    inputElement.focus();
+
+    inputElement.addEventListener("blur", function () {
+      const updatedText= inputElement.value.trim();
+      if (updatedText) {
+        todo[index].text = updatedText;
+        saveToLocalStorage();
+      }
+      displayTasks();
+    });
+
+ }
+
 
 
  function displayTasks() {
